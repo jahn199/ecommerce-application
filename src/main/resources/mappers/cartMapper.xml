@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.AjaxSpringProject.mapper.CartMapper">
+<mapper namespace="com.kht.ecommerce.ecommerce_application.mapper.CartMapper">
+
+
+    <select id="getCartByUserId">
+        SELECT  C.id, C.userId, C.date,
+                P.title, P.price,
+                CP.quantity
+
+        FROM carts C
+                 JOIN cart_products CP  ON CP.cartId =  C.id
+                 JOIN products P   ON P.id = CP.productId
+
+        WHERE C.userId = #{userId}
+
+    </select>
     <!--
     <select id="getCartByUserId">
-
-        SELECT cp.userId, p.title, p.price, cp.quantity
+        SELECT cp.cartId, p.title, p.price, cp.quantity
         FROM cart_products cp
             JOIN products p
                 ON cp.productId = p.id
-        WHERE cp.userId = #{userId};
 
+        WHERE cp.cartId = #{cartId}
     </select>
     -->
-
-    <select id="getCartByUserId">
-
-    select c.id, c.userid, c.date,
-    p.title, p.price,
-    cp.quantity
-
-    from carts c
-    join cart_products cp on cp.cartId = C.id
-    join products P on p.id = cp.productid
-
-    where c.userId = {userId};
-
-    </select>
 </mapper>

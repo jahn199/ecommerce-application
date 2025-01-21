@@ -1,5 +1,6 @@
 package com.kht.ecommerce.ecommerce_application.service;
 
+
 import com.kht.ecommerce.ecommerce_application.dto.Product;
 import com.kht.ecommerce.ecommerce_application.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProducts() {
         return productMapper.getAllProducts();
+    }
+
+    @Override
+    public void addProduct() {
+        productMapper.addProduct();
+    }
+
+    @Override
+    public Product getProductId(int id) {
+        return productMapper.getProductId(id);
     }
 }
