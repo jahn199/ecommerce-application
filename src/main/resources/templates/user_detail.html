@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사용자 상세보기</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Title</title>
+    <link rel="icon" href="/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-<h1>사용자 상세 정보</h1>
-<div id="user-detail-container">
-    <p id="email"></p>
-    <p id="username"></p>
-    <p id="password"></p>
-    <p id="firstname"></p>
-    <p id="lastname"></p>
-    <p id="phone"></p>
-    <p id="city"></p>
-    <p id="street"></p>
-    <p id="streetNumber"></p>
-    <p id="zipcode"></p>
-    <p id="geolocationLat"></p>
-    <p id="geolocationLong"></p>
-</div>
-<script src="/user_detail.js"></script>
+<h1>유저 상세정보</h1>
+<div id="userDetail"></div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get(`id`)
+    $.ajax({
+        url: `/api/user/${id}`,
+        method: "GET",
+        success: function (data) {
+            $("#userDetail").html(`
+            <p>${data.lastname}${data.firstname}</p>
+            <p>${data.email}</p>
+            <p>${data.username}</p>
+            <p>${data.phone}</p>
+            <p>${data.city}</p>
+            <p>${data.street}</p>
+            <!-- /user/edit?id="${data.id}  => ViewController에서
+            user-edit.html 템플릿과 연결하는 url
+            -->
+            <a href="/user/edit?id=${data.id}">정보 수정하기</a>
+          `);
+        }
 
+    })
+</script>
 </body>
 </html>

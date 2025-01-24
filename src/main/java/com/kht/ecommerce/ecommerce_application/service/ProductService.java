@@ -8,5 +8,7 @@ public interface ProductService {
 
     void addProduct();
 
-    Product getProductId(int id);
+    Product findById(int id);
+
+    void updateProduct(Product product);
 }

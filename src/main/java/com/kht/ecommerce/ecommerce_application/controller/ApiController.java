@@ -8,9 +8,12 @@ import com.kht.ecommerce.ecommerce_application.service.ProductServiceImpl;
 import com.kht.ecommerce.ecommerce_application.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -29,6 +32,15 @@ public class ApiController {
         return userService.getAllUsers();
     }
 
+    //사용자 상세보기 API
+    @GetMapping("/api/user/{id}")
+    public User getUser(@PathVariable int id) {
+        User user = userService.getByUserId(id);
+        log.info(user.toString());
+        return userService.getByUserId(id);
+    }
+
+
     // 상품 목록 API
     @GetMapping("/api/products")
     public List<Product> getProducts() {
@@ -39,6 +51,7 @@ public class ApiController {
     // http://localhost:8080/api/carts?userId=1
     @GetMapping("/api/carts")
     public List<Cart> getCart(@RequestParam("userId") int userId) {
+
         return cartService.getCartByUserId(userId);
     }
     /*
@@ -81,13 +94,10 @@ public class ApiController {
         productService.addProduct();
     }
 
-    @GetMapping("/api/user/{userId}")
-    public User userDetail(@PathVariable("id")int id){
-        return userService.getUserId(id);
-    }
-    @GetMapping("/api/product/{productId}")
-    public Product productDetail(@PathVariable("id")int id){
-        return productService.getProductId(id);
+    @GetMapping("/api/product/{id}")
+    public Product getProduct(@PathVariable("id") int id) {
+        return productService.findById(id);
+        // DB에서 가져온 데이터를 front-end 전달
     }
 
 }

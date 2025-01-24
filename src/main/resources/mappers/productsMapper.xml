@@ -13,11 +13,22 @@
         VALUES (#{title}, #{price}, #{description}, #{category}, #{image}, #{ratingRate}, #{ratingCount})
     </insert>
 
-    <select id="getProductId">
+    <update id="updateProduct">
+        UPDATE Products
+        SET
+            title = #{title},
+            price = #{price},
+            description = #{description},
+            category = #{category},
+            image = #{image},
+            rating_rate = #{ratingRate},
+            rating_count = #{ratingCount}
+        WHERE id = #{id}
+    </update>
 
+    <select id="findById">
         SELECT *
-        FROM users
-        WHERE id=#{id}
-
+        FROM Products
+        WHERE id = #{id}
     </select>
 </mapper>

@@ -22,8 +22,9 @@
                         $('#product-container').append(
                             `<div class="card">
                                 <img src="${value.image}" alt="${value.title}">
-                                <h3><a href="/product/?id=${value.title}">${value.title}</a></h3>
+                                <h3>${value.title}</h3>
                                 <p>${value.price}</p>
+                                <a href="/product?id=${value.id}">제품 상세보기 이동하기</a>
 
                             </div>`
                         )

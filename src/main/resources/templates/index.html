@@ -22,12 +22,12 @@
                     $.each(data, function (key, value) {
                         console.log("key : ", key, "value : ", value);
                         $('#user-container').append(
-                            `<div class="card">
-                            <h3><a href="/user/${value.userId}">${value.lastname} ${value.firstname}</a></h3>
-                        <p>${value.phone}</p>
-                        <a href="/cart?userId=${value.userId}"> 장바구니 확인하기</a>
-                        </div>`
-                    )
+                            '<div class="card">' +
+                            '<h3>' + value.lastname + value.firstname + '</h3>' +
+                            '<p>' + value.phone + '</p>' +
+                            '<a href="/user?id='+ value.id      + ' "> 이동하기</a>' +
+                            '<a href="/cart?userId=' + value.userId + '"> 장바구니 확인하기</a>'  +
+                            '</div>')
                     })
                 },
             error:

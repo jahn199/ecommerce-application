@@ -2,7 +2,6 @@ package com.kht.ecommerce.ecommerce_application.mapper;
 
 import com.kht.ecommerce.ecommerce_application.dto.Product;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -10,9 +9,9 @@ import java.util.List;
 public interface ProductMapper {
     List<Product> getAllProducts();
 
+    Product findById(int id);
+
     void addProduct();
 
-    Product getProductId(int id);
+    void updateProduct(Product product);
 }
-
-
